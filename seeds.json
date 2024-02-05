@@ -1,0 +1,233 @@
+[
+    {
+        "model": "survey.questionnaire",
+        "pk": 1,
+        "fields":
+        {
+            "caption": "TEST",
+            "description": "Отладочный опросник",
+            "exposed": true,
+            "created_at": "2024-01-15T05:38:20.073Z"
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 1,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "111",
+            "conclusion": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 2,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "222",
+            "conclusion": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 3,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "333",
+            "conclusion": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 4,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "444",
+            "conclusion": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 5,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "555",
+            "conclusion": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 6,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "666",
+            "conclusion": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 7,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "777",
+            "conclusion": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 8,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "Опрос завершен",
+            "conclusion": true
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 1,
+        "fields":
+        {
+            "question": 1,
+            "body": "1-1",
+            "next_question": 2
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 2,
+        "fields":
+        {
+            "question": 1,
+            "body": "2-2",
+            "next_question": 4
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 3,
+        "fields":
+        {
+            "question": 2,
+            "body": "3-3",
+            "next_question": 3
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 4,
+        "fields":
+        {
+            "question": 2,
+            "body": "4-4",
+            "next_question": 7
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 5,
+        "fields":
+        {
+            "question": 3,
+            "body": "5-5",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 6,
+        "fields":
+        {
+            "question": 3,
+            "body": "6-6",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 7,
+        "fields":
+        {
+            "question": 7,
+            "body": "7-7",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 8,
+        "fields":
+        {
+            "question": 7,
+            "body": "8-8",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 13,
+        "fields":
+        {
+            "question": 4,
+            "body": "13-13",
+            "next_question": 5
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 15,
+        "fields":
+        {
+            "question": 5,
+            "body": "15-15",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 16,
+        "fields":
+        {
+            "question": 5,
+            "body": "16-16",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 21,
+        "fields":
+        {
+            "question": 4,
+            "body": "21-21",
+            "next_question": 6
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 25,
+        "fields":
+        {
+            "question": 6,
+            "body": "25-25",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 26,
+        "fields":
+        {
+            "question": 6,
+            "body": "26-26",
+            "next_question": 8
+        }
+    }
+]

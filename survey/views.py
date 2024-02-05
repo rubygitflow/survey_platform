@@ -1,8 +1,6 @@
-# from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
-
-from survey.models import Questionnaire
+from .models import Questionnaire, Question, Answer
 
 def index(request):
   return HttpResponse('<h1>Cтраница приложения с опросами</h1>')

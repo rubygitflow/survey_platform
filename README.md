@@ -13,3 +13,8 @@ This is
 - The output of the survey results, including statistics on the answers to each question, after the survey is completed.
 
 Based on an idea from https://nomia2.notion.site/Python-developer-7adf62ee6a9f4aaab28db4ac661e2139
+
+### Install the database with the source data
+1. Add environment variables to the `survey_platform/.env` file (look at `survey_platform/.env.example`).
+2. `python manage.py migrate --fake-initial`
+3. `./manage.py loaddata seeds.json`

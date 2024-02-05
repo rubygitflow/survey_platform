@@ -229,5 +229,275 @@
             "body": "26-26",
             "next_question": 8
         }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 1,
+        "fields":
+        {
+            "user": 1,
+            "questionnaire": 1,
+            "question": 1,
+            "answer": 1
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 2,
+        "fields":
+        {
+            "user": 1,
+            "questionnaire": 1,
+            "question": 2,
+            "answer": 3
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 3,
+        "fields":
+        {
+            "user": 1,
+            "questionnaire": 1,
+            "question": 3,
+            "answer": 5
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 4,
+        "fields":
+        {
+            "user": 2,
+            "questionnaire": 1,
+            "question": 1,
+            "answer": 1
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 5,
+        "fields":
+        {
+            "user": 2,
+            "questionnaire": 1,
+            "question": 2,
+            "answer": 3
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 6,
+        "fields":
+        {
+            "user": 2,
+            "questionnaire": 1,
+            "question": 3,
+            "answer": 5
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 7,
+        "fields":
+        {
+            "user": 3,
+            "questionnaire": 1,
+            "question": 1,
+            "answer": 2
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 8,
+        "fields":
+        {
+            "user": 3,
+            "questionnaire": 1,
+            "question": 4,
+            "answer": 13
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 9,
+        "fields":
+        {
+            "user": 3,
+            "questionnaire": 1,
+            "question": 5,
+            "answer": 15
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 10,
+        "fields":
+        {
+            "user": 4,
+            "questionnaire": 1,
+            "question": 1,
+            "answer": 2
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 11,
+        "fields":
+        {
+            "user": 4,
+            "questionnaire": 1,
+            "question": 4,
+            "answer": 21
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 12,
+        "fields":
+        {
+            "user": 4,
+            "questionnaire": 1,
+            "question": 6,
+            "answer": 25
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 13,
+        "fields":
+        {
+            "user": 5,
+            "questionnaire": 1,
+            "question": 1,
+            "answer": 2
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 14,
+        "fields":
+        {
+            "user": 5,
+            "questionnaire": 1,
+            "question": 4,
+            "answer": 21
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 15,
+        "fields":
+        {
+            "user": 5,
+            "questionnaire": 1,
+            "question": 6,
+            "answer": 26
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields":
+        {
+            "password": "pbkdf2_sha256$720000$IDYIiysLGE1NKRrNrVvnL9$dzW5vXdIZoY2Scm2AJudlQr4NaClU3BDm5Hnea9USeQ=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Sam",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-02-05T17:58:08.224Z",
+            "groups":
+            [],
+            "user_permissions":
+            []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields":
+        {
+            "password": "pbkdf2_sha256$720000$ZCRxo0ODasq4vGvfG8iML5$1rR86ymQS1X0BlDoasS5AFvPZJQsbUJr7f4rwOueJ6M=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Bob",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-02-05T17:50:30.402Z",
+            "groups":
+            [],
+            "user_permissions":
+            []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields":
+        {
+            "password": "pbkdf2_sha256$720000$YvMcAPEjQlguk0pWTnCNVr$ERYeLWrlJSj1FHXkLxEN1ftGjPfTxW947VjDfaNqbM4=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Jack",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-02-05T17:56:54.961Z",
+            "groups":
+            [],
+            "user_permissions":
+            []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields":
+        {
+            "password": "pbkdf2_sha256$720000$B5GgIvp1KInjVS0qxUqocG$JxUErz5oCuu6MrpgU3xHBq+b0q+o12ONfScnj3/rdlI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Harry",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-02-05T17:57:20.894Z",
+            "groups":
+            [],
+            "user_permissions":
+            []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 5,
+        "fields":
+        {
+            "password": "pbkdf2_sha256$720000$4JUh5Z1sgfhyy28laVEQPM$2Fv6wu9Kdv5xeqJwahdqFFi1snZzt3W8ejWCj3XVXQ0=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Henry",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-02-05T17:57:43.370Z",
+            "groups":
+            [],
+            "user_permissions":
+            []
+        }
     }
 ]

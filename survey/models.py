@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # https://docs.djangoproject.com/en/5.0/topics/db/models/
 # https://docs.djangoproject.com/en/5.0/ref/models/fields/#model-field-types
@@ -83,3 +84,37 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.body[ : 25 ]
+
+class Poll(models.Model):
+    """результаты опроса"""
+
+    class Meta:
+        db_table = "polls"
+        verbose_name = "Результат опроса"
+        verbose_name_plural = "Результаты опроса"
+
+
+    user = models.ForeignKey(
+      User,
+      verbose_name="Пользователь",
+      on_delete=models.CASCADE
+    )
+    questionnaire = models.ForeignKey(
+      Questionnaire,
+      verbose_name="Пройденный опрос",
+      on_delete=models.CASCADE,
+    )
+    question = models.ForeignKey(
+      Question,
+      verbose_name="Полученный вопрос",
+      on_delete=models.CASCADE,
+    )
+    answer = models.ForeignKey(
+      Answer,
+      verbose_name="Выбранный ответ",
+      on_delete=models.CASCADE,
+      null=True,
+    )
+
+    def __str__(self):
+        return f"{self.user.username}.{self.questionnaire.pk}.{self.question.pk}.{'' if self.answer is None else self.answer.pk}"

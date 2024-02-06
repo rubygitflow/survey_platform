@@ -1,0 +1,12 @@
+{% extends 'survey/base.html' %}
+
+{% block content %}
+<div class="list-group">
+  <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+    Select the topic of the question to participate in the study
+  </a>
+    {% for q in questionnaires %}
+      <a href="polling/{{ q.pk }}/" class="list-group-item list-group-item-action">{{q.caption}}</a>
+    {% endfor %}
+</div>
+{% endblock %}

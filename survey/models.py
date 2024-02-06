@@ -50,7 +50,11 @@ class Question(models.Model):
       verbose_name="Текст вопроса",
     )
     conclusion = models.BooleanField(
-      verbose_name="Окончание опроса ",
+      verbose_name="Окончание опроса",
+      default=False,
+    )
+    initial = models.BooleanField(
+      verbose_name="Начало опроса",
       default=False,
     )
 

@@ -11,13 +11,25 @@
         }
     },
     {
+        "model": "survey.questionnaire",
+        "pk": 2,
+        "fields":
+        {
+            "caption": "How often do you write in a manuscript?",
+            "description": "Has Digitalization occupied your attention?",
+            "exposed": false,
+            "created_at": "2024-02-06T18:44:13.222Z"
+        }
+    },
+    {
         "model": "survey.question",
         "pk": 1,
         "fields":
         {
             "questionnaire": 1,
             "body": "111",
-            "conclusion": false
+            "conclusion": false,
+            "initial": true
         }
     },
     {
@@ -27,7 +39,8 @@
         {
             "questionnaire": 1,
             "body": "222",
-            "conclusion": false
+            "conclusion": false,
+            "initial": false
         }
     },
     {
@@ -37,7 +50,8 @@
         {
             "questionnaire": 1,
             "body": "333",
-            "conclusion": false
+            "conclusion": false,
+            "initial": false
         }
     },
     {
@@ -47,7 +61,8 @@
         {
             "questionnaire": 1,
             "body": "444",
-            "conclusion": false
+            "conclusion": false,
+            "initial": false
         }
     },
     {
@@ -57,7 +72,8 @@
         {
             "questionnaire": 1,
             "body": "555",
-            "conclusion": false
+            "conclusion": false,
+            "initial": false
         }
     },
     {
@@ -67,7 +83,8 @@
         {
             "questionnaire": 1,
             "body": "666",
-            "conclusion": false
+            "conclusion": false,
+            "initial": false
         }
     },
     {
@@ -77,7 +94,8 @@
         {
             "questionnaire": 1,
             "body": "777",
-            "conclusion": false
+            "conclusion": false,
+            "initial": false
         }
     },
     {
@@ -87,7 +105,8 @@
         {
             "questionnaire": 1,
             "body": "Опрос завершен",
-            "conclusion": true
+            "conclusion": true,
+            "initial": false
         }
     },
     {

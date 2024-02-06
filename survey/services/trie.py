@@ -13,7 +13,7 @@ class Trie:
             """
         h = DBQuery(sql=sql.strip(), attributes=[questionnaire_id]).key_value()
         if question_id not in h.keys(): 
-            return [] 
+            return []
 
         k = question_id
         children = [k]

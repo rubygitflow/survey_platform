@@ -7,6 +7,13 @@ class DBQuery:
         self.sql = sql
         self.attributes = attributes
 
+    def easy_execute(self) -> tuple:
+        result = ()
+        with connection.cursor() as cursor:
+            cursor.execute(self.sql, self.attributes)
+            result = cursor.fetchall()
+        return result
+
     def execute(self) -> list:
         result = []
         with connection.cursor() as cursor:

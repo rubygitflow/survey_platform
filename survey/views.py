@@ -27,7 +27,7 @@ def polling(request, queid):
     return render(request, 'survey/questionnaire.html', context=data)
 
 def error_404(request, exception):
-   return HttpResponseNotFound(f'<h1>Page not found</h1>')
+    return HttpResponseNotFound(f'<h1>Page not found</h1>')
 
 def poll(request, polid, queid):
     if request.method == 'POST':

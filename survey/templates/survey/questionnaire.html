@@ -5,7 +5,10 @@
   <div class="card-body">
     <h5 class="card-title">{{ questionnaire.caption }}</h5>
     <p class="card-text">{{ questionnaire.description }}</p>
-    <a href="/poll/{{ questionnaire.pk }}/question/{{ question.pk }}/" class="btn btn-primary">Начать</a>
+    <form action="/poll/{{ questionnaire.pk }}/question/{{ question.pk }}/" method="post">
+      {% csrf_token %}
+      <button class="btn btn-primary" type="submit" value="OK">Start</button>
+    </form>
   </div>
 </div>
 {% endblock %}

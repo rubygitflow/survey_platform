@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load survey_tags %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Survey</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    {% block title %}
+    <title>{{title}}</title>
+    {% endblock %}
+
+</head>
+<body class="mx-5">
+
+{% include 'survey/navbar.html' %}
+
+<table class="container-fluid table-content" border=0 cellpadding="0" cellspacing="0">
+<!-- Content block -->
+<tr>
+  <td valign=top class="content">
+    <div class="content-text">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </td>
+</tr>
+<!-- End of content block -->
+
+<!-- Footer -->
+<tr>
+  <td valign=top>
+    {% include 'survey/footer.html' %}
+  </td>
+</tr>
+<!--End of Footer -->
+</table>
+
+</body>
+</html>

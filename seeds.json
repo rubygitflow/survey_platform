@@ -1,0 +1,522 @@
+[
+    {
+        "model": "survey.questionnaire",
+        "pk": 1,
+        "fields":
+        {
+            "caption": "TEST",
+            "description": "Отладочный опросник",
+            "exposed": true,
+            "created_at": "2024-01-15T05:38:20.073Z"
+        }
+    },
+    {
+        "model": "survey.questionnaire",
+        "pk": 2,
+        "fields":
+        {
+            "caption": "How often do you write in a manuscript?",
+            "description": "Has Digitalization occupied your attention?",
+            "exposed": false,
+            "created_at": "2024-02-06T18:44:13.222Z"
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 1,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "111",
+            "conclusion": false,
+            "initial": true
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 2,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "222",
+            "conclusion": false,
+            "initial": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 3,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "333",
+            "conclusion": false,
+            "initial": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 4,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "444",
+            "conclusion": false,
+            "initial": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 5,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "555",
+            "conclusion": false,
+            "initial": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 6,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "666",
+            "conclusion": false,
+            "initial": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 7,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "777",
+            "conclusion": false,
+            "initial": false
+        }
+    },
+    {
+        "model": "survey.question",
+        "pk": 8,
+        "fields":
+        {
+            "questionnaire": 1,
+            "body": "Опрос завершен",
+            "conclusion": true,
+            "initial": false
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 1,
+        "fields":
+        {
+            "question": 1,
+            "body": "1-1",
+            "next_question": 2
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 2,
+        "fields":
+        {
+            "question": 1,
+            "body": "2-2",
+            "next_question": 4
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 3,
+        "fields":
+        {
+            "question": 2,
+            "body": "3-3",
+            "next_question": 3
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 4,
+        "fields":
+        {
+            "question": 2,
+            "body": "4-4",
+            "next_question": 7
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 5,
+        "fields":
+        {
+            "question": 3,
+            "body": "5-5",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 6,
+        "fields":
+        {
+            "question": 3,
+            "body": "6-6",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 7,
+        "fields":
+        {
+            "question": 7,
+            "body": "7-7",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 8,
+        "fields":
+        {
+            "question": 7,
+            "body": "8-8",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 13,
+        "fields":
+        {
+            "question": 4,
+            "body": "13-13",
+            "next_question": 5
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 15,
+        "fields":
+        {
+            "question": 5,
+            "body": "15-15",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 16,
+        "fields":
+        {
+            "question": 5,
+            "body": "16-16",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 21,
+        "fields":
+        {
+            "question": 4,
+            "body": "21-21",
+            "next_question": 6
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 25,
+        "fields":
+        {
+            "question": 6,
+            "body": "25-25",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.answer",
+        "pk": 26,
+        "fields":
+        {
+            "question": 6,
+            "body": "26-26",
+            "next_question": 8
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 1,
+        "fields":
+        {
+            "user": 1,
+            "questionnaire": 1,
+            "question": 1,
+            "answer": 1
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 2,
+        "fields":
+        {
+            "user": 1,
+            "questionnaire": 1,
+            "question": 2,
+            "answer": 3
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 3,
+        "fields":
+        {
+            "user": 1,
+            "questionnaire": 1,
+            "question": 3,
+            "answer": 5
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 4,
+        "fields":
+        {
+            "user": 2,
+            "questionnaire": 1,
+            "question": 1,
+            "answer": 1
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 5,
+        "fields":
+        {
+            "user": 2,
+            "questionnaire": 1,
+            "question": 2,
+            "answer": 3
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 6,
+        "fields":
+        {
+            "user": 2,
+            "questionnaire": 1,
+            "question": 3,
+            "answer": 5
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 7,
+        "fields":
+        {
+            "user": 3,
+            "questionnaire": 1,
+            "question": 1,
+            "answer": 2
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 8,
+        "fields":
+        {
+            "user": 3,
+            "questionnaire": 1,
+            "question": 4,
+            "answer": 13
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 9,
+        "fields":
+        {
+            "user": 3,
+            "questionnaire": 1,
+            "question": 5,
+            "answer": 15
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 10,
+        "fields":
+        {
+            "user": 4,
+            "questionnaire": 1,
+            "question": 1,
+            "answer": 2
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 11,
+        "fields":
+        {
+            "user": 4,
+            "questionnaire": 1,
+            "question": 4,
+            "answer": 21
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 12,
+        "fields":
+        {
+            "user": 4,
+            "questionnaire": 1,
+            "question": 6,
+            "answer": 25
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 13,
+        "fields":
+        {
+            "user": 5,
+            "questionnaire": 1,
+            "question": 1,
+            "answer": 2
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 14,
+        "fields":
+        {
+            "user": 5,
+            "questionnaire": 1,
+            "question": 4,
+            "answer": 21
+        }
+    },
+    {
+        "model": "survey.poll",
+        "pk": 15,
+        "fields":
+        {
+            "user": 5,
+            "questionnaire": 1,
+            "question": 6,
+            "answer": 26
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields":
+        {
+            "password": "pbkdf2_sha256$720000$IDYIiysLGE1NKRrNrVvnL9$dzW5vXdIZoY2Scm2AJudlQr4NaClU3BDm5Hnea9USeQ=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Sam",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-02-05T17:58:08.224Z",
+            "groups":
+            [],
+            "user_permissions":
+            []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields":
+        {
+            "password": "pbkdf2_sha256$720000$ZCRxo0ODasq4vGvfG8iML5$1rR86ymQS1X0BlDoasS5AFvPZJQsbUJr7f4rwOueJ6M=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Bob",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-02-05T17:50:30.402Z",
+            "groups":
+            [],
+            "user_permissions":
+            []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields":
+        {
+            "password": "pbkdf2_sha256$720000$YvMcAPEjQlguk0pWTnCNVr$ERYeLWrlJSj1FHXkLxEN1ftGjPfTxW947VjDfaNqbM4=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Jack",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-02-05T17:56:54.961Z",
+            "groups":
+            [],
+            "user_permissions":
+            []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields":
+        {
+            "password": "pbkdf2_sha256$720000$B5GgIvp1KInjVS0qxUqocG$JxUErz5oCuu6MrpgU3xHBq+b0q+o12ONfScnj3/rdlI=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Harry",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-02-05T17:57:20.894Z",
+            "groups":
+            [],
+            "user_permissions":
+            []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 5,
+        "fields":
+        {
+            "password": "pbkdf2_sha256$720000$4JUh5Z1sgfhyy28laVEQPM$2Fv6wu9Kdv5xeqJwahdqFFi1snZzt3W8ejWCj3XVXQ0=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Henry",
+            "first_name": "",
+            "last_name": "",
+            "email": "",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2024-02-05T17:57:43.370Z",
+            "groups":
+            [],
+            "user_permissions":
+            []
+        }
+    }
+]

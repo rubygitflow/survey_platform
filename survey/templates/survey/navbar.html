@@ -12,10 +12,18 @@
        <li>
         <a class="nav-link" href="https://github.com/rubygitflow" target="_blank">About the author</a>
        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Created by it.Architect</a>
-        </li>
       </ul>
+      {% if request.user.is_authenticated %}
+        <span>
+          <span  class="btn btn-outline-secondary disabled">{{user.username}}</span>
+          <a class="btn btn-outline-primary" href="{% url 'logout' %}">Sign out</a>
+        </span>
+      {% else %}
+        <span>
+          <a class="btn btn-outline-primary" href="{% url 'register' %}">Sign up</a>
+          <a class="btn btn-outline-primary" href="{% url 'login' %}">Sign in</a>
+        </span>
+      {% endif %}
     </div>
   </div>
 </nav>

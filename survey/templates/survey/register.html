@@ -1,0 +1,21 @@
+{% extends 'survey/base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+  <form method="post" class="my-3" style="width: 20rem; max-width: 100%; display: 'center';">
+    {% csrf_token %}
+
+    {% for f in form %}
+    <div class="mb-3">
+      <label class="form-label" for="{{ f.id_for_label }}">{{f.label}}:</label>
+      {{ f }}
+      <div class="form-error">
+        {{ f.errors }}
+      </div>
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary">Sign up</button>
+  </form>
+</div>
+{% endblock %}

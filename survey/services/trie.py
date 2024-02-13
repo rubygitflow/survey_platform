@@ -1,4 +1,5 @@
 from .db_query import DBQuery
+from survey.models import Poll
 
 class Trie:
 
@@ -21,3 +22,30 @@ class Trie:
             k = h[k][0]
             children.append(k)
         return children
+
+    def is_honesty(self, user_id: int, questionnaire_id: int, question_id: int, for_answer_id: int) -> bool:
+        """ is there another answer to question_id or not """
+        answers = Poll.objects.filter(
+            user_id=user_id,
+            questionnaire_id=questionnaire_id,
+            question_id=question_id
+        ).values_list('answer_id', flat=True)
+
+        if len(answers) == 0:
+            return True
+
+        if len(answers) > 1:
+            return False
+
+        if answers[0] == for_answer_id:
+            return True
+
+        return False
+
+    def is_cheating(self, user_id: int, questionnaire_id: int, question_id: int, for_answer_id: int) -> bool:
+        return not self.is_honesty(
+            user_id=user_id,
+            questionnaire_id=questionnaire_id,
+            question_id=question_id,
+            for_answer_id=for_answer_id
+        )

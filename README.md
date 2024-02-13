@@ -12,6 +12,7 @@ This is
 - Admin panel;
 - User Interface;
 - Permission to access surveys only for registered users;
+- Anti-cheat algorithm. Any user can take part in the survey only once;
 - A logical tree that allows to determine which questions to show or hide, depending on the user's previous answers;
 - The output of the survey results, including statistics on the answers to each question, after the survey is completed.
 

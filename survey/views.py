@@ -11,6 +11,7 @@ from django.contrib.auth import logout, login
 from .forms import *
 from .models import *
 from .utils import *
+from .services.trie import Trie
 
 # https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests
 
@@ -54,9 +55,32 @@ def poll(request, polid, queid):
         if last_answer:
             last_answer = int(last_answer)
 
+        # to verify honesty
+        if Trie().is_cheating(
+            user_id=request.user.id,
+            questionnaire_id=polid,
+            question_id=last_question,
+            for_answer_id=last_answer
+        ):
+            return redirect('fraud')
+
+
+        # data on the current page
         question = Question.objects.get(id=queid)
         answers = Answer.objects.filter(question_id=queid)
 
+        # voted – to block answers on the curent page
+        ids = answers.values_list('id', flat=True)
+        voted = bool(
+          Poll.objects.filter(
+              user_id=request.user.id,
+              questionnaire_id=polid,
+              question_id=queid,
+              answer_id__in=ids
+          )
+        )
+
+        # Poll.objects.create – to add a previous answer to the survey results
         if last_question and last_question > 0:
             previous_voting = Poll.objects.filter(
                 user_id=request.user.id,
@@ -72,6 +96,7 @@ def poll(request, polid, queid):
                     answer_id=last_answer
                 )
 
+        # analytics_by_questions, analytics_by_answers – to generate an analytical report
         if question.conclusion:
             if last_question and last_question > 0:
                 a = Analytics(questionnaire_id=polid)
@@ -91,6 +116,7 @@ def poll(request, polid, queid):
             "answers": answers,
             "analytics_by_questions": analytics_by_questions,
             "analytics_by_answers": analytics_by_answers,
+            "voted": voted,
         }
     else:
         data = {
@@ -100,6 +126,7 @@ def poll(request, polid, queid):
             "answers": [],
             "analytics_by_questions": [],
             "analytics_by_answers": [],
+            "voted": False,
         }
 
     return render(request, 'survey/poll.html', context=data)
@@ -135,3 +162,9 @@ class LoginUser(DataMixin, LoginView):
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+def fraud(request):
+    data = {
+        "title": "SURVEY-PLATFORM",
+    }
+    return render(request, 'survey/fraud.html', context=data)

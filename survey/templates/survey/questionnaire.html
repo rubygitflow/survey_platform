@@ -1,14 +1,87 @@
 {% extends 'survey/base.html' %}
 
 {% block content %}
-<div class="card" style="object-fit: none">
-  <div class="card-body">
-    <h5 class="card-title">{{ questionnaire.caption }}</h5>
-    <p class="card-text">{{ questionnaire.description }}</p>
-    <form action="/poll/{{ questionnaire.pk }}/question/{{ question.pk }}/" method="post">
-      {% csrf_token %}
-      <button class="btn btn-primary" type="submit" value="OK">Start</button>
-    </form>
-  </div>
-</div>
+  {% if user_is_staff %}
+    <div class="card" style="object-fit: none">
+      <div class="card-body">
+        <h5 class="card-title">{{ questionnaire.caption }}</h5>
+        <p class="card-text">{{ questionnaire.description }}</p>
+      </div>
+    </div>
+
+    <div class="card" style="object-fit: none">
+      <div class="card-body">
+        <h5 class="card-title">SURVEY RESULTS BY QUESTIONS</h5>
+        <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Номер вопроса</th>
+            <th scope="col">Текст вопроса</th>
+            <th scope="col">Количество проголосовавших пользователей</th>
+            <th scope="col">% от проголосовавших</th>
+            <th scope="col">Рэйтинг вопроса</th>
+          </tr>
+        </thead>
+          <tbody>
+            {% for a in analytics_by_questions %}
+              <tr>
+                <th scope="row">{{a.question_id}}</th>
+                <td>{{a.q_body}}</td>
+                <td>{{a.users_count}}</td>
+                <td>{{a.users_pct}}</td>
+                <td>{{a.rating}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card" style="object-fit: none">
+      <div class="card-body">
+        <h5 class="card-title">SURVEY RESULTS BY ANSWERS</h5>
+        <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Номер вопроса</th>
+            <th scope="col">Номер ответа</th>
+            <th scope="col">Текст ответа</th>
+            <th scope="col">Количество проголосовавших пользователей</th>
+            <th scope="col">% от проголосовавших</th>
+            <th scope="col">Рэйтинг вопроса</th>
+          </tr>
+        </thead>
+          <tbody>
+            {% for a in analytics_by_answers %}
+              <tr>
+                <th scope="row">{{a.question_id}}</th>
+                <td>{{a.a_id}}</td>
+                <td>{{a.a_body}}</td>
+                <td>{{a.users_count}}</td>
+                <td>{{a.users_pct}}</td>
+                <td>{{a.rating}}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <a href="/" class="btn btn-primary">Back to the list of polls</a>
+
+  {% else %}
+    <div class="card" style="object-fit: none">
+      <div class="card-body">
+        <h5 class="card-title">{{ questionnaire.caption }}</h5>
+        <p class="card-text">{{ questionnaire.description }}</p>
+        {% if completed %}
+          <p class="fst-italic text-bg-warning p-3">You have already completed the survey</p>
+        {% else %}
+          <form action="/poll/{{ questionnaire.pk }}/question/{{ question.pk }}/" method="post">
+            {% csrf_token %}
+            <button class="btn btn-primary" type="submit" value="OK">Start</button>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
 {% endblock %}

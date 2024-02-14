@@ -19,7 +19,7 @@ class Analytics:
 
         return t[0][0]
 
-    def rating_of_questions(self, question_id: int) -> list:
+    def questions_rating(self) -> list:
         sql = """
             with question_list as (
               select
@@ -55,14 +55,16 @@ class Analytics:
             from question_list
             join user_numbered on user_numbered.users_count = question_list.users_count;
             """
-        l = DBQuery(sql=sql.strip(), attributes=[self.questionnaire, self.questionnaire]).execute()
+        return DBQuery(sql=sql.strip(), attributes=[self.questionnaire, self.questionnaire]).execute()
+
+    def rating_of_questions(self, question_id: int) -> list:
+        l = self.questions_rating()
         if len(l) == 0: 
             return []
 
         return self._select_by_filter(from_query=l, question_id=question_id)
 
-
-    def rating_of_answers(self, question_id: int) -> list:
+    def answers_rating(self) -> list:
         sql = """
             with answer_list as (
               select
@@ -99,7 +101,11 @@ class Analytics:
             from answer_list
             join user_numbered on user_numbered.users_count = answer_list.users_count;
             """
-        l = DBQuery(sql=sql.strip(), attributes=[self.questionnaire, self.questionnaire]).execute()
+        return DBQuery(sql=sql.strip(), attributes=[self.questionnaire, self.questionnaire]).execute()
+
+
+    def rating_of_answers(self, question_id: int) -> list:
+        l = self.answers_rating()
         if len(l) == 0: 
             return []
 

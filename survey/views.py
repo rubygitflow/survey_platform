@@ -27,15 +27,34 @@ def polling(request, queid):
         return redirect('login')
 
     questionnaire = Questionnaire.objects.filter(pk = queid)
-    question = Question.objects.filter(questionnaire_id=queid, initial=True)
-    if len(questionnaire) == 0 or len(question) == 0:
-        return redirect('home', permanent = False)
+    if request.user.is_staff:
+        a = Analytics(questionnaire_id=queid)
+        data = {
+            "title": "SURVEY",
+            "user_is_staff": request.user.is_staff,
+            "questionnaire": questionnaire[0],
+            "analytics_by_questions": a.questions_rating(),
+            "analytics_by_answers": a.answers_rating(),
+        }
+    else:
+        question = Question.objects.filter(questionnaire_id=queid, initial=True)
+        if len(questionnaire) == 0 or len(question) == 0:
+            return redirect('home', permanent = False)
 
-    data = {
-        "title": "SURVEY",
-        "questionnaire": questionnaire[0],
-        "question": question[0],
-    }
+        completed = bool(
+          Poll.objects.filter(
+              user_id=request.user.id,
+              questionnaire_id=queid,
+              question_id=question[0].pk,
+          )
+        )
+        data = {
+            "title": "SURVEY",
+            "user_is_staff": request.user.is_staff,
+            "questionnaire": questionnaire[0],
+            "question": question[0],
+            "completed": completed,
+        }
     return render(request, 'survey/questionnaire.html', context=data)
 
 def error_404(request, exception):

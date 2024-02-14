@@ -11,6 +11,7 @@ This is
 **The application includes:**
 - Admin panel;
 - User Interface;
+- Staff Interface for viewing complete statistics on any surveys;
 - Permission to access surveys only for registered users;
 - Anti-cheat algorithm. Any user can take part in the survey only once;
 - A logical tree that allows to determine which questions to show or hide, depending on the user's previous answers;

@@ -4,7 +4,6 @@ from survey.services.analytics import Analytics
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView, CreateView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout, login
 
@@ -22,19 +21,20 @@ def index(request):
     }
     return render(request, 'survey/index.html', context=data)
 
+@login_required(login_url='login')
 def polling(request, queid):
-    if not request.user.is_authenticated:
-        return redirect('login')
-
     questionnaire = Questionnaire.objects.filter(pk = queid)
+    title = {
+        "title": "SURVEY",
+    }
     if request.user.is_staff:
         a = Analytics(questionnaire_id=queid)
         data = {
-            "title": "SURVEY",
             "user_is_staff": request.user.is_staff,
             "questionnaire": questionnaire[0],
             "analytics_by_questions": a.questions_rating(),
             "analytics_by_answers": a.answers_rating(),
+            "count_of_vouted_users": a.count_of_vouted_users(),
         }
     else:
         question = Question.objects.filter(questionnaire_id=queid, initial=True)
@@ -49,20 +49,22 @@ def polling(request, queid):
           )
         )
         data = {
-            "title": "SURVEY",
             "user_is_staff": request.user.is_staff,
             "questionnaire": questionnaire[0],
             "question": question[0],
             "completed": completed,
         }
-    return render(request, 'survey/questionnaire.html', context=data)
+    return render(request, 'survey/questionnaire.html', context=data|title)
 
 def error_404(request, exception):
     return HttpResponseNotFound(f'<h1>Page not found</h1>')
 
+@login_required(login_url='login')
 def poll(request, polid, queid):
-    if not request.user.is_authenticated:
-        return redirect('login')
+    total_count_of_users = 0
+    title = {
+        "title": "SURVEY",
+    }
 
     if request.method == 'POST':
         last_question = request.GET.get('last_question')
@@ -121,6 +123,7 @@ def poll(request, polid, queid):
                 a = Analytics(questionnaire_id=polid)
                 analytics_by_questions = a.rating_of_questions(question_id=last_question)
                 analytics_by_answers = a.rating_of_answers(question_id=last_question)
+                total_count_of_users = a.count_of_vouted_users()
             else:
                 analytics_by_questions = []
                 analytics_by_answers = []
@@ -130,25 +133,28 @@ def poll(request, polid, queid):
 
         data = {
             "is_final": question.conclusion,
-            "title": "SURVEY",
             "question": question,
+            "questionnaire": question.questionnaire,
             "answers": answers,
             "analytics_by_questions": analytics_by_questions,
             "analytics_by_answers": analytics_by_answers,
+            "count_of_vouted_users": total_count_of_users,
             "voted": voted,
         }
     else:
+        question = Question(questionnaire_id=Questionnaire.objects.first().pk, body="Start a new Questionnaire")
         data = {
             "is_final": False,
-            "title": "SURVEY",
-            "question": Question(questionnaire_id=Questionnaire.objects.first().pk, body="Start a new Questionnaire"),
+            "question": question,
+            "questionnaire": question.questionnaire,
             "answers": [],
             "analytics_by_questions": [],
             "analytics_by_answers": [],
+            "count_of_vouted_users": total_count_of_users,
             "voted": False,
         }
 
-    return render(request, 'survey/poll.html', context=data)
+    return render(request, 'survey/poll.html', context=data|title)
 
 
 class RegisterUser(DataMixin, CreateView):
@@ -183,7 +189,7 @@ def logout_user(request):
     return redirect('login')
 
 def fraud(request):
-    data = {
+    title = {
         "title": "SURVEY-PLATFORM",
     }
-    return render(request, 'survey/fraud.html', context=data)
+    return render(request, 'survey/fraud.html', context=title)

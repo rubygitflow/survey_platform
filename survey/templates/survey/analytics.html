@@ -1,20 +1,20 @@
 <div class="card" style="object-fit: none">
   <div class="card-header">
-    <div class="card-title fw-bold">Total number of survey participants: {{ count_of_vouted_users }}</div>
+    <div class="card-title fw-bold">{{ total_number_of_survey_participants }}: {{ count_of_vouted_users }}</div>
   </div>
 </div>
 
 <div class="card" style="object-fit: none">
   <div class="card-body">
-    <h5 class="card-title">SURVEY RESULTS BY QUESTIONS</h5>
+    <h5 class="card-title">{{ survey_results_by_questions }}</h5>
     <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">Номер вопроса</th>
-        <th scope="col">Текст вопроса</th>
-        <th scope="col">Количество проголосовавших пользователей</th>
-        <th scope="col">% от проголосовавших</th>
-        <th scope="col">Рэйтинг вопроса</th>
+        <th scope="col">{{ question_number }}</th>
+        <th scope="col">{{ question_text }}</th>
+        <th scope="col">{{ number_voted_users }}</th>
+        <th scope="col">{{ pct_of_voters }}</th>
+        <th scope="col">{{ question_rating }}</th>
       </tr>
     </thead>
       <tbody>
@@ -34,16 +34,16 @@
 
 <div class="card" style="object-fit: none">
   <div class="card-body">
-    <h5 class="card-title">SURVEY RESULTS BY ANSWERS</h5>
+    <h5 class="card-title">{{ survey_results_by_answers }}</h5>
     <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">Номер вопроса</th>
-        <th scope="col">Номер ответа</th>
-        <th scope="col">Текст ответа</th>
-        <th scope="col">Количество проголосовавших пользователей</th>
-        <th scope="col">% от проголосовавших</th>
-        <th scope="col">Рэйтинг вопроса</th>
+        <th scope="col">{{ question_number }}</th>
+        <th scope="col">{{ answer_number }}</th>
+        <th scope="col">{{ answer_text }}</th>
+        <th scope="col">{{ number_voted_users }}</th>
+        <th scope="col">{{ pct_of_voters }}</th>
+        <th scope="col">{{ answer_rating }}</th>
       </tr>
     </thead>
       <tbody>

@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-15 22:23+0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: survey/templates/survey/analytics.html:4
+msgid "Total number of survey participants"
+msgstr "Общее число участников опроса"
+
+#: survey/views.py:19
+msgid "Question number"
+msgstr "Номер вопроса"
+
+#: survey/views.py:20
+msgid "Answer number"
+msgstr "Номер ответа"
+
+#: survey/views.py:21
+msgid "Question text"
+msgstr "Текст вопроса"
+
+#: survey/views.py:22
+msgid "Answer text"
+msgstr "Текст ответа"
+
+#: survey/views.py:23
+msgid "Number of users who voted"
+msgstr "Количество проголосовавших пользователей"
+
+#: survey/views.py:24
+#, fuzzy, python-format
+#| msgid "% of voters"
+msgid "% of voters"
+msgstr "% от проголосовавших"
+
+#: survey/views.py:25
+msgid "Question rating"
+msgstr "Рэйтинг вопроса"
+
+#: survey/views.py:26
+msgid "Answer rating"
+msgstr "Рэйтинг ответа"
+
+#: survey/views.py:27
+msgid "SURVEY RESULTS BY QUESTIONS"
+msgstr "РЕЗУЛЬТАТЫ ОПРОСА ПО ВОПРОСАМ"
+
+#: survey/views.py:28
+msgid "SURVEY RESULTS BY ANSWERS"
+msgstr "РЕЗУЛЬТАТЫ ОПРОСА ПО ОТВЕТАМ"

@@ -1,3 +1,4 @@
+from django.utils.translation import gettext as _
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from survey.services.analytics import Analytics
@@ -14,6 +15,20 @@ from .services.trie import Trie
 
 # https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests
 
+analyst = {
+    'question_number': _('Question number'),
+    'answer_number': _('Answer number'),
+    'question_text': _('Question text'),
+    'answer_text': _('Answer text'),
+    'number_voted_users': _('Number of users who voted'),
+    'pct_of_voters': _("% of voters"),
+    'question_rating': _('Question rating'),
+    'answer_rating': _('Answer rating'),
+    'survey_results_by_questions': _('SURVEY RESULTS BY QUESTIONS'),
+    'survey_results_by_answers': _('SURVEY RESULTS BY ANSWERS'),
+    'total_number_of_survey_participants': _('Total number of survey participants'),
+}
+
 def index(request):
     data = {
         "title": "SURVEY-PLATFORM",
@@ -26,7 +41,7 @@ def polling(request, queid):
     questionnaire = Questionnaire.objects.filter(pk = queid)
     title = {
         "title": "SURVEY",
-    }
+    } | analyst
     if request.user.is_staff:
         a = Analytics(questionnaire_id=queid)
         data = {
@@ -64,7 +79,7 @@ def poll(request, polid, queid):
     total_count_of_users = 0
     title = {
         "title": "SURVEY",
-    }
+    } | analyst
 
     if request.method == 'POST':
         last_question = request.GET.get('last_question')

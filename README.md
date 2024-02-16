@@ -16,7 +16,8 @@ This is
 - Permission to access surveys only for registered users;
 - Anti-cheat algorithm. Any user can take part in the survey only once;
 - A logical tree that allows to determine which questions to show or hide, depending on the user's previous answers;
-- The output of the survey results, including statistics on the answers to each question, after the survey is completed.
+- The output of the survey results, including statistics on the answers to each question, after the survey is completed;
+- Bootstrap design.
 
 Based on an idea from https://nomia2.notion.site/Python-developer-7adf62ee6a9f4aaab28db4ac661e2139
 

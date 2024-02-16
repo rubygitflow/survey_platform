@@ -11,13 +11,13 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">{{ home }}</a>
         </li>
-       <li>
+       <li class="nav-item">
         <a class="nav-link" href="https://github.com/rubygitflow" target="_blank">{{ about_author }}</a>
        </li>
       </ul>
       {% if not skip_language_selection %}
-        <span >
-          <form action="{% url 'set_language' %}" method="post" class="d-inline">
+        <span class="d-flex">
+          <form action="{% url 'set_language' %}" method="post" class="d-flex">
             {% csrf_token %}
             <input name="next" type="hidden" value="{{ redirect_to }}" />
             <select name="language" class="form-select form-select-sm">

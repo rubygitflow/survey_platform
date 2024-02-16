@@ -32,7 +32,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -76,7 +75,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'survey_platform.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -109,11 +107,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
+# https://www.freecodecamp.org/news/localize-django-app/
 
-LANGUAGE_CODE = env('LOCAL_LANGUAGE')
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 

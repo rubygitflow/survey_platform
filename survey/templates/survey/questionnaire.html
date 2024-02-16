@@ -5,7 +5,7 @@
     {% include 'survey/questionnaire_description.html' %}
     {% include 'survey/analytics.html' %}
     <div class="list-group">
-      <a href="/" class="btn btn-primary">Back to the list of polls</a>
+      <a href="/" class="btn btn-primary">{{ back_to_polls }}</a>
     </div>
   {% else %}
     <div class="card" style="object-fit: none">
@@ -13,11 +13,11 @@
         <h5 class="card-title">{{ questionnaire.caption }}</h5>
         <p class="card-text">{{ questionnaire.description }}</p>
         {% if completed %}
-          <p class="fst-italic text-bg-warning p-3">You have already completed the survey</p>
+          <p class="fst-italic text-bg-warning p-3">{{ completed_survey }}</p>
         {% else %}
           <form action="/poll/{{ questionnaire.pk }}/question/{{ question.pk }}/" method="post">
             {% csrf_token %}
-            <button class="btn btn-primary" type="submit" value="OK">Start</button>
+            <button class="btn btn-primary" type="submit" value="OK">{{ start }}</button>
           </form>
         {% endif %}
       </div>

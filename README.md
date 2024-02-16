@@ -7,6 +7,7 @@ This is
 - Saving user responses in conjunction with relevant questions;
 - User registration procedure;
 - User login procedure;
+- Multilingual interface;
 
 **The application includes:**
 - Admin panel;

@@ -1,4 +1,5 @@
-from django.urls import path
+from django.urls import path, include
+from django.conf.urls.i18n import i18n_patterns
 
 from .views import *
 
@@ -10,4 +11,5 @@ urlpatterns = [
     path('logout/', logout_user, name='logout'),
     path('register/', RegisterUser.as_view(), name='register'),
     path('fraud/', fraud, name='fraud'),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]

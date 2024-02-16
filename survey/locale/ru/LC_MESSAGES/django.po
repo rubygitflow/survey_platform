@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-15 22:23+0600\n"
+"POT-Creation-Date: 2024-02-16 16:16+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,48 +20,117 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: survey/templates/survey/analytics.html:4
-msgid "Total number of survey participants"
-msgstr "Общее число участников опроса"
+#: survey/forms.py:10 survey/forms.py:20
+msgid "Login"
+msgstr "Логин"
 
-#: survey/views.py:19
+#: survey/forms.py:11
+msgid "Email"
+msgstr "Email"
+
+#: survey/forms.py:12 survey/forms.py:21
+msgid "Password"
+msgstr "Пароль"
+
+#: survey/forms.py:13
+msgid "Repeat Password"
+msgstr "Повтор пароля"
+
+#: survey/views.py:27
 msgid "Question number"
 msgstr "Номер вопроса"
 
-#: survey/views.py:20
+#: survey/views.py:28
 msgid "Answer number"
 msgstr "Номер ответа"
 
-#: survey/views.py:21
+#: survey/views.py:29
 msgid "Question text"
 msgstr "Текст вопроса"
 
-#: survey/views.py:22
+#: survey/views.py:30
 msgid "Answer text"
 msgstr "Текст ответа"
 
-#: survey/views.py:23
+#: survey/views.py:31
 msgid "Number of users who voted"
 msgstr "Количество проголосовавших пользователей"
 
-#: survey/views.py:24
+#: survey/views.py:32
 #, fuzzy, python-format
 #| msgid "% of voters"
 msgid "% of voters"
 msgstr "% от проголосовавших"
 
-#: survey/views.py:25
+#: survey/views.py:33
 msgid "Question rating"
-msgstr "Рэйтинг вопроса"
+msgstr "Рейтинг вопроса"
 
-#: survey/views.py:26
+#: survey/views.py:34
 msgid "Answer rating"
-msgstr "Рэйтинг ответа"
+msgstr "Рейтинг ответа"
 
-#: survey/views.py:27
+#: survey/views.py:35
 msgid "SURVEY RESULTS BY QUESTIONS"
 msgstr "РЕЗУЛЬТАТЫ ОПРОСА ПО ВОПРОСАМ"
 
-#: survey/views.py:28
+#: survey/views.py:36
 msgid "SURVEY RESULTS BY ANSWERS"
 msgstr "РЕЗУЛЬТАТЫ ОПРОСА ПО ОТВЕТАМ"
+
+#: survey/views.py:37
+msgid "Total number of survey participants"
+msgstr "Общее число участников опроса"
+
+#: survey/views.py:42
+msgid "Home"
+msgstr "На главную"
+
+#: survey/views.py:43
+msgid "About the author"
+msgstr "Об авторе"
+
+#: survey/views.py:44
+msgid "Change"
+msgstr "Изменить"
+
+#: survey/views.py:45
+msgid "Sign out"
+msgstr "Выйти"
+
+#: survey/views.py:46
+msgid "Sign in"
+msgstr "Войти"
+
+#: survey/views.py:47
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+#: survey/views.py:52
+msgid "Choose a survey topic to participate in the study"
+msgstr "Выберите тему опроса для участия в исследовании"
+
+#: survey/views.py:57
+msgid "Fraud is detected. It is forbidden to change answers"
+msgstr "Обнаружено жульничество. Менять ответы запрещено"
+
+#: survey/views.py:62
+msgid "Start"
+msgstr "Начать"
+
+#: survey/views.py:63
+msgid "Back to the list of polls"
+msgstr "Вернуться к списку опросов"
+
+#: survey/views.py:68
+msgid "Warning!"
+msgstr "Предупреждение!"
+
+#: survey/views.py:69
+msgid ""
+"Choose the answer carefully. It will no longer be possible to change it."
+msgstr "Ответ выбирайте внимательно. Его уже нельзя будет поменять."
+
+#: survey/views.py:74
+msgid "You have already completed the survey"
+msgstr "Вы уже завершили прохождение опроса"

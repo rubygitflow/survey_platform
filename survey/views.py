@@ -1,4 +1,5 @@
 from django.utils.translation import gettext as _
+from django.utils.translation import get_language
 from django.http import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from survey.services.analytics import Analytics
@@ -15,33 +16,79 @@ from .services.trie import Trie
 
 # https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests
 
-analyst = {
-    'question_number': _('Question number'),
-    'answer_number': _('Answer number'),
-    'question_text': _('Question text'),
-    'answer_text': _('Answer text'),
-    'number_voted_users': _('Number of users who voted'),
-    'pct_of_voters': _("% of voters"),
-    'question_rating': _('Question rating'),
-    'answer_rating': _('Answer rating'),
-    'survey_results_by_questions': _('SURVEY RESULTS BY QUESTIONS'),
-    'survey_results_by_answers': _('SURVEY RESULTS BY ANSWERS'),
-    'total_number_of_survey_participants': _('Total number of survey participants'),
-}
+def fullname():
+    return "SURVEY-PLATFORM"
+
+def shortname():
+    return "SURVEY"
+
+def analyst():
+    return {
+        'question_number': _('Question number'),
+        'answer_number': _('Answer number'),
+        'question_text': _('Question text'),
+        'answer_text': _('Answer text'),
+        'number_voted_users': _('Number of users who voted'),
+        'pct_of_voters': _("% of voters"),
+        'question_rating': _('Question rating'),
+        'answer_rating': _('Answer rating'),
+        'survey_results_by_questions': _('SURVEY RESULTS BY QUESTIONS'),
+        'survey_results_by_answers': _('SURVEY RESULTS BY ANSWERS'),
+        'total_number_of_survey_participants': _('Total number of survey participants'),
+    }
+
+def navbar():
+    return {
+        'home': _('Home'),
+        'about_author': _('About the author'),
+        'change_lang': _('Change'),
+        'sign_out': _('Sign out'),
+        'sign_in': _('Sign in'),
+        'sign_up': _('Sign up'),
+    }
+
+def index_labels():
+    return {
+        'choose_survey': _('Choose a survey topic to participate in the study'),
+    }
+
+def fraud_labels():
+    return {
+        'fraud_detected': _('Fraud is detected. It is forbidden to change answers'),
+    }
+
+def nav_controls():
+    return {
+        'start': _('Start'),
+        'back_to_polls': _('Back to the list of polls'),
+    }
+
+def poll_labels():
+    return {
+        'warning': _('Warning!'),
+        'choose_carefully': _('Choose the answer carefully. It will no longer be possible to change it.'),
+    }
+
+def questionnaire_labels():
+    return {
+        'completed_survey': _('You have already completed the survey'),
+    }
 
 def index(request):
     data = {
-        "title": "SURVEY-PLATFORM",
-        "questionnaires": Questionnaire.objects.filter(exposed=True)
-    }
+        "title": fullname(),
+        "questionnaires": Questionnaire.objects.filter(exposed=True),
+        'redirect_to': request.path,
+    } | navbar() | index_labels()
     return render(request, 'survey/index.html', context=data)
 
 @login_required(login_url='login')
 def polling(request, queid):
     questionnaire = Questionnaire.objects.filter(pk = queid)
     title = {
-        "title": "SURVEY",
-    } | analyst
+        "title": shortname(),
+        'redirect_to': request.path,
+    } | analyst() | navbar() | nav_controls() | questionnaire_labels()
     if request.user.is_staff:
         a = Analytics(questionnaire_id=queid)
         data = {
@@ -69,7 +116,7 @@ def polling(request, queid):
             "question": question[0],
             "completed": completed,
         }
-    return render(request, 'survey/questionnaire.html', context=data|title)
+    return render(request, 'survey/questionnaire.html', context=data | title)
 
 def error_404(request, exception):
     return HttpResponseNotFound(f'<h1>Page not found</h1>')
@@ -78,8 +125,10 @@ def error_404(request, exception):
 def poll(request, polid, queid):
     total_count_of_users = 0
     title = {
-        "title": "SURVEY",
-    } | analyst
+        "title": shortname(),
+        "skip_language_selection": True,
+        'redirect_to': request.path,
+    } | analyst() | navbar() | poll_labels() | nav_controls()
 
     if request.method == 'POST':
         last_question = request.GET.get('last_question')
@@ -169,7 +218,7 @@ def poll(request, polid, queid):
             "voted": False,
         }
 
-    return render(request, 'survey/poll.html', context=data|title)
+    return render(request, 'survey/poll.html', context=data | title)
 
 
 class RegisterUser(DataMixin, CreateView):
@@ -179,7 +228,7 @@ class RegisterUser(DataMixin, CreateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title="Sign up")
+        c_def = self.get_user_context(title=fullname()) | navbar()
         return dict(list(context.items()) + list(c_def.items()))
 
     def form_valid(self, form):
@@ -193,7 +242,7 @@ class LoginUser(DataMixin, LoginView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title="Sign in")
+        c_def = self.get_user_context(title=fullname()) | navbar()
         return dict(list(context.items()) + list(c_def.items()))
 
     def get_success_url(self):
@@ -205,6 +254,7 @@ def logout_user(request):
 
 def fraud(request):
     title = {
-        "title": "SURVEY-PLATFORM",
-    }
+        "title": fullname(),
+        'redirect_to': request.path,
+    } | navbar() | fraud_labels()
     return render(request, 'survey/fraud.html', context=title)

@@ -1,27 +1,43 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">{{ title }}</a>
+    <a class="navbar-brand fw-bold" href="/">{{ title }}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a class="nav-link active" aria-current="page" href="/">{{ home }}</a>
         </li>
        <li>
-        <a class="nav-link" href="https://github.com/rubygitflow" target="_blank">About the author</a>
+        <a class="nav-link" href="https://github.com/rubygitflow" target="_blank">{{ about_author }}</a>
        </li>
       </ul>
-      {% if request.user.is_authenticated %}
-        <span>
-          <span  class="btn btn-outline-secondary disabled">{{user.username}}</span>
-          <a class="btn btn-outline-primary" href="{% url 'logout' %}">Sign out</a>
-        </span>
-      {% else %}
-        <span>
-          <a class="btn btn-outline-primary" href="{% url 'register' %}">Sign up</a>
-          <a class="btn btn-outline-primary" href="{% url 'login' %}">Sign in</a>
+      {% if not skip_language_selection %}
+        <span >
+          <form action="{% url 'set_language' %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}" />
+            <select name="language" class="form-select form-select-sm">
+              {% if LANGUAGE_CODE == 'ru' %}
+                <option value="en">English</option>
+                <option value="ru" selected>Русский</option>
+              {% else %}
+                <option value="en" selected>English</option>
+                <option value="ru">Русский</option>
+              {% endif %}
+            </select>
+            <input type="submit" value="{{ change_lang }}" class="btn btn-sm btn-outline-primary">
+          </form>
+          {% if request.user.is_authenticated %}
+            <span  class="btn btn-sm btn-outline-secondary disabled">{{user.username}}</span>
+            <a class="btn btn-sm btn-outline-primary" href="{% url 'logout' %}">{{ sign_out }}</a>
+          {% else %}
+            <a class="btn btn-sm btn-outline-primary" href="{% url 'register' %}">{{ sign_up }}</a>
+            <a class="btn btn-sm btn-outline-primary" href="{% url 'login' %}">{{ sign_in }}</a>
+          {% endif %}
         </span>
       {% endif %}
     </div>

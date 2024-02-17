@@ -19,6 +19,7 @@ from .services.trie import Trie
 
 # https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests
 
+
 def fullname():
     """ Application full logo """
     return "SURVEY-PLATFORM"
@@ -134,7 +135,7 @@ def polling(request, queid):
         }
     return render(request, 'survey/questionnaire.html', context=data | title)
 
-def error_404(request, exception):
+def error_404(request, _exception):
     """ The page with the 404 error """
     return HttpResponseNotFound(f'<h1>Page not found</h1>')
 
@@ -240,14 +241,13 @@ def poll(request, polid, queid):
 
     return render(request, 'survey/poll.html', context=data | title)
 
-
 class RegisterUser(DataMixin, CreateView):
     """ Registration form page """
     form_class = RegisterUserForm
     template_name = 'survey/register.html'
     success_url = reverse_lazy('login')
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, _object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title=fullname()) | navbar()
         return dict(list(context.items()) + list(c_def.items()))
@@ -262,7 +262,7 @@ class LoginUser(DataMixin, LoginView):
     form_class = LoginUserForm
     template_name = 'survey/login.html'
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *, _object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title=fullname()) | navbar()
         return dict(list(context.items()) + list(c_def.items()))

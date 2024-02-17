@@ -10,10 +10,10 @@ from .models import Questionnaire, Question, Answer, Poll
 
 class PollAdmin(admin.ModelAdmin):
 
-    def has_add_permission(self, request, obj=None):
+    def has_add_permission(self, request, _obj=None):
         return False
 
-    def has_change_permission(self, request, obj=None):
+    def has_change_permission(self, request, _obj=None):
         return False
 
     list_display = ('id', 'questionnaire_id', 'user_id', 'question_id', 'answer_id')

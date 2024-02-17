@@ -1,7 +1,7 @@
 """ Application Models """
 
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 # https://docs.djangoproject.com/en/5.0/topics/db/models/
 # https://docs.djangoproject.com/en/5.0/ref/models/fields/#model-field-types
@@ -101,7 +101,7 @@ class Poll(models.Model):
 
 
     user = models.ForeignKey(
-      User,
+      get_user_model(),
       verbose_name="Пользователь",
       on_delete=models.CASCADE
     )

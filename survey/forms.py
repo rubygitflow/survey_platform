@@ -4,7 +4,7 @@
 from django.utils.translation import gettext_lazy as _
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 
 from .models import *
@@ -24,7 +24,7 @@ class RegisterUserForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
-        model = User
+        model = get_user_model()
         fields = ('username', 'email', 'password1', 'password2')
 
 class LoginUserForm(AuthenticationForm):

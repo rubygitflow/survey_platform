@@ -1,3 +1,6 @@
+""" Accessing the database using an sql query """
+# pylint: disable=missing-class-docstring
+
 from django.db import connection
 
 # https://docs.djangoproject.com/en/5.0/topics/db/sql/
@@ -8,6 +11,7 @@ class DBQuery:
         self.attributes = attributes
 
     def easy_execute(self) -> tuple:
+        """ The simplest query without data conversion """
         result = ()
         with connection.cursor() as cursor:
             cursor.execute(self.sql, self.attributes)
@@ -15,6 +19,7 @@ class DBQuery:
         return result
 
     def execute(self) -> list:
+        """ conversion: query to a named dictionary """
         result = []
         with connection.cursor() as cursor:
             cursor.execute(self.sql, self.attributes)
@@ -23,6 +28,7 @@ class DBQuery:
         return result
 
     def execute_with_id(self) -> dict:
+        """ conversion: query to an indexed dictionary """
         result = {}
         with connection.cursor() as cursor:
             cursor.execute(self.sql, self.attributes)
@@ -32,6 +38,7 @@ class DBQuery:
         return result
 
     def key_value(self) -> dict:
+        """ conversion: query to an Id-Value dictionary"""
         result = {}
         with connection.cursor() as cursor:
             cursor.execute(self.sql, self.attributes)

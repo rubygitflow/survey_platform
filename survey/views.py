@@ -1,3 +1,6 @@
+""" Application Views """
+# pylint: disable=missing-class-docstring
+
 from django.utils.translation import gettext as _
 from django.utils.translation import get_language
 from django.http import HttpResponse, HttpResponseNotFound
@@ -17,12 +20,15 @@ from .services.trie import Trie
 # https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests
 
 def fullname():
+    """ Application full logo """
     return "SURVEY-PLATFORM"
 
 def shortname():
+    """ Application short logo """
     return "SURVEY"
 
 def analyst():
+    """ Headings of the Analytical table """
     return {
         'question_number': _('Question number'),
         'answer_number': _('Answer number'),
@@ -38,6 +44,7 @@ def analyst():
     }
 
 def navbar():
+    """ Headings of the Navbar controls """
     return {
         'home': _('Home'),
         'about_author': _('About the author'),
@@ -48,22 +55,26 @@ def navbar():
     }
 
 def index_labels():
+    """ The title of the survey list """
     return {
         'choose_survey': _('Choose a survey topic to participate in the study'),
     }
 
 def fraud_labels():
+    """ The title of the fraud page """
     return {
         'fraud_detected': _('Fraud is detected. It is forbidden to change answers'),
     }
 
 def nav_controls():
+    """ Navigation control headers """
     return {
         'start': _('Start'),
         'back_to_polls': _('Back to the list of polls'),
     }
 
 def poll_labels():
+    """ Warning during survey """
     return {
         'warning': _('Warning!'),
         'choose_carefully': _(
@@ -72,11 +83,13 @@ def poll_labels():
     }
 
 def questionnaire_labels():
+    """ Exceptional warning before survey """
     return {
         'completed_survey': _('You have already completed the survey'),
     }
 
 def index(request):
+    """ Index page """
     data = {
         "title": fullname(),
         "questionnaires": Questionnaire.objects.filter(exposed=True),
@@ -86,6 +99,7 @@ def index(request):
 
 @login_required(login_url='login')
 def polling(request, queid):
+    """ Questionnaire page """
     questionnaire = Questionnaire.objects.filter(pk = queid)
     title = {
         "title": shortname(),
@@ -121,10 +135,12 @@ def polling(request, queid):
     return render(request, 'survey/questionnaire.html', context=data | title)
 
 def error_404(request, exception):
+    """ The page with the 404 error """
     return HttpResponseNotFound(f'<h1>Page not found</h1>')
 
 @login_required(login_url='login')
 def poll(request, polid, queid):
+    """ Survey page """
     total_count_of_users = 0
     title = {
         "title": shortname(),
@@ -226,6 +242,7 @@ def poll(request, polid, queid):
 
 
 class RegisterUser(DataMixin, CreateView):
+    """ Registration form page """
     form_class = RegisterUserForm
     template_name = 'survey/register.html'
     success_url = reverse_lazy('login')
@@ -241,6 +258,7 @@ class RegisterUser(DataMixin, CreateView):
         return redirect('home')
 
 class LoginUser(DataMixin, LoginView):
+    """ Login form page """
     form_class = LoginUserForm
     template_name = 'survey/login.html'
 
@@ -253,10 +271,12 @@ class LoginUser(DataMixin, LoginView):
         return reverse_lazy('home')
 
 def logout_user(request):
+    """ Logout endpoint """
     logout(request)
     return redirect('login')
 
 def fraud(request):
+    """ Fraud reporting page """
     title = {
         "title": fullname(),
         'redirect_to': request.path,

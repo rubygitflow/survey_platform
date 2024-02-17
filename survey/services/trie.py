@@ -1,9 +1,12 @@
+""" User behavior in the survey tree """
+# pylint: disable=missing-class-docstring
+
 from .db_query import DBQuery
 from survey.models import Poll
 
 class Trie:
-
     def take_from(self, questionnaire_id: int, question_id: int) -> list:
+        """ Get nodes from user path in survey tree """
         sql = """
             select a.next_question_id as key, ARRAY[ a.question_id, a.next_question_id] as value
             from answers  a
@@ -29,7 +32,7 @@ class Trie:
             questionnaire_id: int,
             question_id: int,
             for_answer_id: int) -> bool:
-        """ is there another answer to question_id or not """
+        """ is there another answer to question_id or not - No"""
         answers = Poll.objects.filter(
             user_id=user_id,
             questionnaire_id=questionnaire_id,
@@ -53,6 +56,7 @@ class Trie:
             questionnaire_id: int,
             question_id: int,
             for_answer_id: int) -> bool:
+        """ is there another answer to question_id or not - Yes"""
         return not self.is_honesty(
             user_id=user_id,
             questionnaire_id=questionnaire_id,

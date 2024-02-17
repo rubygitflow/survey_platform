@@ -1,3 +1,6 @@
+""" Get statistics on Users and Surveys """
+# pylint: disable=missing-class-docstring
+
 from .db_query import DBQuery
 from .trie import Trie
 
@@ -8,8 +11,8 @@ class Analytics:
     def __init__(self, questionnaire_id: int):     
         self.questionnaire = questionnaire_id
 
-
     def count_of_vouted_users(self) -> int:
+        """ Just the number of users who voted """
         sql = """
             select COUNT(DISTINCT user_id) from polls where questionnaire_id = %s;
             """
@@ -20,6 +23,10 @@ class Analytics:
         return t[0][0]
 
     def questions_rating(self) -> list:
+        """
+        A complete analysis of some questionnaire on questions
+        for all users who voted
+        """
         sql = """
             with question_list as (
               select
@@ -61,6 +68,10 @@ class Analytics:
         ).execute()
 
     def rating_of_questions(self, question_id: int) -> list:
+        """
+        A Trie-based filtering analysis of some questionnaire on questions
+        for all users who voted
+        """
         l = self.questions_rating()
         if len(l) == 0: 
             return []
@@ -68,6 +79,10 @@ class Analytics:
         return self._select_by_filter(from_query=l, question_id=question_id)
 
     def answers_rating(self) -> list:
+        """
+        A complete analysis of some questionnaire on answers
+        for all users who voted
+        """
         sql = """
             with answer_list as (
               select
@@ -109,8 +124,11 @@ class Analytics:
             attributes=[self.questionnaire, self.questionnaire]
         ).execute()
 
-
     def rating_of_answers(self, question_id: int) -> list:
+        """
+        A Trie-based filtering analysis of some questionnaire on answers
+        for all users who voted
+        """
         l = self.answers_rating()
         if len(l) == 0: 
             return []
@@ -118,13 +136,10 @@ class Analytics:
         return self._select_by_filter(from_query=l, question_id=question_id)
 
     def _select_by_filter(self, from_query: list, question_id: int) -> list:
+        """ A Trie-based filter """
         if self.filter is None:
             self.filter = Trie().take_from(
                 questionnaire_id=self.questionnaire,
                 question_id=question_id) 
 
         return [x for x in from_query if x['question_id'] in self.filter ]
-
-
-
-

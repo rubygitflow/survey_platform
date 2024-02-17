@@ -123,7 +123,9 @@ class Poll(models.Model):
     )
 
     def __str__(self):
+        # pylint: disable=E1101
         return(f"{self.user.username}."
                f"{self.questionnaire.pk}."
                f"{self.question.pk}."
                f"{'' if self.answer is None else self.answer.pk}")
+        # pylint: enable=E1101

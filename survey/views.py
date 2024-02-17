@@ -12,9 +12,9 @@ from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout, login
 
-from .forms import *
-from .models import *
-from .utils import *
+from .forms import RegisterUserForm, LoginUserForm
+from .models import Questionnaire, Question, Answer, Poll
+from .utils import DataMixin
 from .services.trie import Trie
 
 # https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests

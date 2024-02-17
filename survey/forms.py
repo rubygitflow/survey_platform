@@ -7,8 +7,6 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 
-from .models import *
-
 class RegisterUserForm(UserCreationForm):
     username = forms.CharField(
         label=_('Login'),

@@ -3,7 +3,8 @@
 from django.urls import path, include
 from django.conf.urls.i18n import i18n_patterns
 
-from .views import *
+from .views import(index, polling, poll, fraud, logout_user,
+                   LoginUser, RegisterUser)
 
 urlpatterns = [
     path('', index, name='home'),

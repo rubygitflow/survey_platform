@@ -1,7 +1,7 @@
 """ Survey Process Steps"""
 
-from survey.services.analytics import Analytics
-from survey.services.trie import Trie
+from .services.analytics import Analytics
+from .services.trie import Trie
 from .models import Question, Answer, Poll
 
 def completing_survey_process(user_id: int,

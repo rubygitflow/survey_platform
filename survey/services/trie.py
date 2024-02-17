@@ -1,8 +1,8 @@
 """ User behavior in the survey tree """
 # pylint: disable=missing-class-docstring
 
-from .db_query import DBQuery
 from survey.models import Poll
+from .db_query import DBQuery
 
 class Trie:
     def take_from(self, questionnaire_id: int, question_id: int) -> list:

@@ -4,15 +4,15 @@
 from django.utils.translation import gettext as _
 from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect
-from survey.services.analytics import Analytics
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout, login
+from survey.services.analytics import Analytics
 
 from .forms import RegisterUserForm, LoginUserForm
-from .models import Questionnaire, Question, Answer, Poll
+from .models import Questionnaire, Question, Poll
 from .utils import DataMixin
 from .poll_services import completing_survey_process
 

@@ -2,13 +2,12 @@
 # pylint: disable=missing-class-docstring
 
 from django.utils.translation import gettext as _
-from django.utils.translation import get_language
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect
 from survey.services.analytics import Analytics
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout, login
 

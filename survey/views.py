@@ -14,7 +14,7 @@ from django.contrib.auth import logout, login
 from .forms import RegisterUserForm, LoginUserForm
 from .models import Questionnaire, Question, Answer, Poll
 from .utils import DataMixin
-from .services.trie import Trie
+from .poll_services import completing_survey_process
 
 # https://docs.djangoproject.com/en/5.0/topics/auth/default/#authentication-in-web-requests
 
@@ -151,78 +151,17 @@ def poll(request, polid, queid):
     if request.method == 'POST':
         last_question = request.GET.get('last_question')
         last_answer = request.GET.get('last_answer')
-
         if last_question:
             last_question = int(last_question)
 
         if last_answer:
             last_answer = int(last_answer)
 
-        # to verify honesty
-        if Trie().is_cheating(
-            user_id=request.user.id,
-            questionnaire_id=polid,
-            question_id=last_question,
-            for_answer_id=last_answer
-        ):
+        status, data = completing_survey_process(
+            request.user.id, last_question, last_answer, polid, queid)
+        if not status:
             return redirect('fraud')
 
-
-        # data on the current page
-        question = Question.objects.get(id=queid)
-        answers = Answer.objects.filter(question_id=queid)
-
-        # voted – to block answers on the curent page
-        ids = answers.values_list('id', flat=True)
-        voted = bool(
-          Poll.objects.filter(
-              user_id=request.user.id,
-              questionnaire_id=polid,
-              question_id=queid,
-              answer_id__in=ids
-          )
-        )
-
-        # Poll.objects.create – to add a previous answer to the survey results
-        if last_question and last_question > 0:
-            previous_voting = Poll.objects.filter(
-                user_id=request.user.id,
-                questionnaire_id=question.questionnaire_id,
-                question_id=last_question,
-                answer_id=last_answer
-            )
-            if not bool(previous_voting):
-                Poll.objects.create(
-                    user_id=request.user.id,
-                    questionnaire_id=question.questionnaire_id,
-                    question_id=last_question,
-                    answer_id=last_answer
-                )
-
-        # analytics_by_questions, analytics_by_answers – to generate an analytical report
-        if question.conclusion:
-            if last_question and last_question > 0:
-                analytic = Analytics(questionnaire_id=polid)
-                analytics_by_questions = analytic.rating_of_questions(question_id=last_question)
-                analytics_by_answers = analytic.rating_of_answers(question_id=last_question)
-                total_count_of_users = analytic.count_of_vouted_users()
-            else:
-                analytics_by_questions = []
-                analytics_by_answers = []
-        else:
-            analytics_by_questions = []
-            analytics_by_answers = []
-
-        data = {
-            "is_final": question.conclusion,
-            "question": question,
-            "questionnaire": question.questionnaire,
-            "answers": answers,
-            "analytics_by_questions": analytics_by_questions,
-            "analytics_by_answers": analytics_by_answers,
-            "count_of_vouted_users": total_count_of_users,
-            "voted": voted,
-        }
     else:
         question = Question(
             questionnaire_id=Questionnaire.objects.first().pk,

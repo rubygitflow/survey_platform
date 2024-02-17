@@ -8,7 +8,7 @@ class Analytics:
     filter = None
     questionnaire = None
 
-    def __init__(self, questionnaire_id: int):     
+    def __init__(self, questionnaire_id: int):
         self.questionnaire = questionnaire_id
 
     def count_of_vouted_users(self) -> int:
@@ -140,6 +140,6 @@ class Analytics:
         if self.filter is None:
             self.filter = Trie().take_from(
                 questionnaire_id=self.questionnaire,
-                question_id=question_id) 
+                question_id=question_id)
 
         return [x for x in from_query if x['question_id'] in self.filter ]

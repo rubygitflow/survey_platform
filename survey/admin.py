@@ -31,6 +31,7 @@ class AnswerAdmin(admin.ModelAdmin):
     search_fields = ['body']
     list_display = ('id', 'question_id', 'body', 'next_question_id')
 
+
 admin.site.register(Questionnaire, QuestionnaireAdmin)
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Answer, AnswerAdmin)

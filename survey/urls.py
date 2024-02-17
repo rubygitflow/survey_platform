@@ -2,8 +2,8 @@
 
 from django.urls import path, include
 
-from .views import(index, polling, poll, fraud, logout_user,
-                   LoginUser, RegisterUser)
+from .views import index, polling, poll, fraud, logout_user,\
+                   LoginUser, RegisterUser
 
 urlpatterns = [
     path('', index, name='home'),

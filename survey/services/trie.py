@@ -16,12 +16,12 @@ class Trie:
             order by a.next_question_id ;
             """
         templ = DBQuery(sql=sql.strip(), attributes=[questionnaire_id]).key_value()
-        if question_id not in templ.keys():
+        if question_id not in templ:
             return []
 
         k = question_id
         children = [k]
-        while k in templ.keys():
+        while k in templ:
             k = templ[k][0]
             children.append(k)
         return children

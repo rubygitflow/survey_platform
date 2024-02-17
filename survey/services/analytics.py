@@ -16,11 +16,11 @@ class Analytics:
         sql = """
             select COUNT(DISTINCT user_id) from polls where questionnaire_id = %s;
             """
-        t = DBQuery(sql=sql.strip(), attributes=[self.questionnaire]).easy_execute()
-        if len(t) == 0: 
+        templ = DBQuery(sql=sql.strip(), attributes=[self.questionnaire]).easy_execute()
+        if len(templ) == 0:
             return 0
 
-        return t[0][0]
+        return templ[0][0]
 
     def questions_rating(self) -> list:
         """
@@ -72,11 +72,11 @@ class Analytics:
         A Trie-based filtering analysis of some questionnaire on questions
         for all users who voted
         """
-        l = self.questions_rating()
-        if len(l) == 0: 
+        templ = self.questions_rating()
+        if len(templ) == 0:
             return []
 
-        return self._select_by_filter(from_query=l, question_id=question_id)
+        return self._select_by_filter(from_query=templ, question_id=question_id)
 
     def answers_rating(self) -> list:
         """
@@ -129,11 +129,11 @@ class Analytics:
         A Trie-based filtering analysis of some questionnaire on answers
         for all users who voted
         """
-        l = self.answers_rating()
-        if len(l) == 0: 
+        templ = self.answers_rating()
+        if len(templ) == 0:
             return []
 
-        return self._select_by_filter(from_query=l, question_id=question_id)
+        return self._select_by_filter(from_query=templ, question_id=question_id)
 
     def _select_by_filter(self, from_query: list, question_id: int) -> list:
         """ A Trie-based filter """

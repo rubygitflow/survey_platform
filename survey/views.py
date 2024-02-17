@@ -106,13 +106,13 @@ def polling(request, queid):
         'redirect_to': request.path,
     } | analyst() | navbar() | nav_controls() | questionnaire_labels()
     if request.user.is_staff:
-        a = Analytics(questionnaire_id=queid)
+        analytic = Analytics(questionnaire_id=queid)
         data = {
             "user_is_staff": request.user.is_staff,
             "questionnaire": questionnaire[0],
-            "analytics_by_questions": a.questions_rating(),
-            "analytics_by_answers": a.answers_rating(),
-            "count_of_vouted_users": a.count_of_vouted_users(),
+            "analytics_by_questions": analytic.questions_rating(),
+            "analytics_by_answers": analytic.answers_rating(),
+            "count_of_vouted_users": analytic.count_of_vouted_users(),
         }
     else:
         question = Question.objects.filter(questionnaire_id=queid, initial=True)
@@ -136,7 +136,7 @@ def polling(request, queid):
 
 def error_404(request, _exception):
     """ The page with the 404 error """
-    return HttpResponseNotFound(f'<h1>Page not found</h1>')
+    return HttpResponseNotFound('<h1>Page not found</h1>')
 
 @login_required(login_url='login')
 def poll(request, polid, queid):
@@ -202,10 +202,10 @@ def poll(request, polid, queid):
         # analytics_by_questions, analytics_by_answers – to generate an analytical report
         if question.conclusion:
             if last_question and last_question > 0:
-                a = Analytics(questionnaire_id=polid)
-                analytics_by_questions = a.rating_of_questions(question_id=last_question)
-                analytics_by_answers = a.rating_of_answers(question_id=last_question)
-                total_count_of_users = a.count_of_vouted_users()
+                analytic = Analytics(questionnaire_id=polid)
+                analytics_by_questions = analytic.rating_of_questions(question_id=last_question)
+                analytics_by_answers = analytic.rating_of_answers(question_id=last_question)
+                total_count_of_users = analytic.count_of_vouted_users()
             else:
                 analytics_by_questions = []
                 analytics_by_answers = []

@@ -121,4 +121,7 @@ class Poll(models.Model):
     )
 
     def __str__(self):
-        return f"{self.user.username}.{self.questionnaire.pk}.{self.question.pk}.{'' if self.answer is None else self.answer.pk}"
+        return(f"{self.user.username}."
+               f"{self.questionnaire.pk}."
+               f"{self.question.pk}."
+               f"{'' if self.answer is None else self.answer.pk}")

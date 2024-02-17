@@ -23,7 +23,12 @@ class Trie:
             children.append(k)
         return children
 
-    def is_honesty(self, user_id: int, questionnaire_id: int, question_id: int, for_answer_id: int) -> bool:
+    def is_honesty(
+            self,
+            user_id: int,
+            questionnaire_id: int,
+            question_id: int,
+            for_answer_id: int) -> bool:
         """ is there another answer to question_id or not """
         answers = Poll.objects.filter(
             user_id=user_id,
@@ -42,7 +47,12 @@ class Trie:
 
         return False
 
-    def is_cheating(self, user_id: int, questionnaire_id: int, question_id: int, for_answer_id: int) -> bool:
+    def is_cheating(
+            self,
+            user_id: int,
+            questionnaire_id: int,
+            question_id: int,
+            for_answer_id: int) -> bool:
         return not self.is_honesty(
             user_id=user_id,
             questionnaire_id=questionnaire_id,

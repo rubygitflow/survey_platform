@@ -66,7 +66,9 @@ def nav_controls():
 def poll_labels():
     return {
         'warning': _('Warning!'),
-        'choose_carefully': _('Choose the answer carefully. It will no longer be possible to change it.'),
+        'choose_carefully': _(
+            'Choose the answer carefully. It will no longer be possible to change it.'
+        ),
     }
 
 def questionnaire_labels():
@@ -206,7 +208,9 @@ def poll(request, polid, queid):
             "voted": voted,
         }
     else:
-        question = Question(questionnaire_id=Questionnaire.objects.first().pk, body="Start a new Questionnaire")
+        question = Question(
+            questionnaire_id=Questionnaire.objects.first().pk,
+            body="Start a new Questionnaire")
         data = {
             "is_final": False,
             "question": question,

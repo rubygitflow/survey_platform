@@ -55,7 +55,10 @@ class Analytics:
             from question_list
             join user_numbered on user_numbered.users_count = question_list.users_count;
             """
-        return DBQuery(sql=sql.strip(), attributes=[self.questionnaire, self.questionnaire]).execute()
+        return DBQuery(
+            sql=sql.strip(),
+            attributes=[self.questionnaire, self.questionnaire]
+        ).execute()
 
     def rating_of_questions(self, question_id: int) -> list:
         l = self.questions_rating()
@@ -101,7 +104,10 @@ class Analytics:
             from answer_list
             join user_numbered on user_numbered.users_count = answer_list.users_count;
             """
-        return DBQuery(sql=sql.strip(), attributes=[self.questionnaire, self.questionnaire]).execute()
+        return DBQuery(
+            sql=sql.strip(),
+            attributes=[self.questionnaire, self.questionnaire]
+        ).execute()
 
 
     def rating_of_answers(self, question_id: int) -> list:
@@ -113,7 +119,9 @@ class Analytics:
 
     def _select_by_filter(self, from_query: list, question_id: int) -> list:
         if self.filter is None:
-            self.filter = Trie().take_from(questionnaire_id=self.questionnaire, question_id=question_id) 
+            self.filter = Trie().take_from(
+                questionnaire_id=self.questionnaire,
+                question_id=question_id) 
 
         return [x for x in from_query if x['question_id'] in self.filter ]
 
